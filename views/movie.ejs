@@ -1,0 +1,22 @@
+<h2>movie</h2>
+<form action="/movie" method="post">
+  <input name="title" type="text" />
+  <select name="actors" multiple>
+    <% actors.forEach((actor) => { %>
+    <option value="<%= actor.id %>"><%= actor.name %></option>
+    <% }) %>
+  </select>
+  <button type="submit">submit</button>
+</form>
+<ul>
+  <% movies.forEach((movie) => { %>
+  <li>
+    <%= movie.title %>
+    <ul>
+      <% movie.actors.forEach((actor) => { %>
+      <li><%= actor.actor.name %></li>
+      <% }) %>
+    </ul>
+  </li>
+  <% }) %>
+</ul>

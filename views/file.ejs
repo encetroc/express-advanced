@@ -1,0 +1,10 @@
+<h2>file upload</h2>
+<form action="/file" method="post" enctype="multipart/form-data">
+  <input name="file" type="file" />
+  <button type="submit">submit</button>
+</form>
+<ul>
+  <% images.forEach((image) => { %>
+  <li><img src="<%= image.url %> " alt="<%= image.name %> " /></li>
+  <% }) %>
+</ul>

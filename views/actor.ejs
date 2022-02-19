@@ -1,0 +1,17 @@
+<h2>actor</h2>
+<form action="/actor" method="post">
+  <input name="name" type="text" />
+  <button type="submit">submit</button>
+</form>
+<ul>
+  <% actors.forEach((actor) => { %>
+  <li>
+    <%= actor.name %>
+    <ul>
+      <% actor.movies.forEach((movie) => { %>
+      <li><%= movie.movie.title %></li>
+      <% }) %>
+    </ul>
+  </li>
+  <% }) %>
+</ul>
