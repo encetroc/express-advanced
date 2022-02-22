@@ -18,6 +18,13 @@ const Movie = mongoose.model(
   })
 )
 
+const Coordinate = mongoose.model(
+  'Coordinate',
+  mongoose.Schema({
+    xy: [Number],
+  })
+)
+
 const MovieActor = mongoose.model(
   'MovieActor',
   mongoose.Schema({
@@ -118,4 +125,16 @@ app.post('/file', fileUploader.single('file'), async (req, res) => {
   res.redirect('/file')
 })
 
-app.listen(3000)
+app.get('/map', async (req, res) => {
+  const coordinates = await Coordinate.find()
+  res.render('map', { coordinates })
+})
+
+app.post('/map', async (req, res) => {
+  const coordinates = JSON.parse(Object.keys(req.body)[0])
+  await Coordinate.create({
+    xy: [coordinates.lat, coordinates.lng],
+  })
+})
+
+app.listen(3003)
